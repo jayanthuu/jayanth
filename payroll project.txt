@@ -1,0 +1,165 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Employee {
+public:
+    string Emp_name;
+    int Emp_id;
+    string Address;
+    string Mail_id;
+    long long Mobile_no;
+    virtual void display(){
+        cout<<"Payroll"<<"\n";
+    }
+};
+
+class Payroll {
+protected:
+    double Basic_Pay;
+public:
+    Payroll(double bp) {
+        Basic_Pay = bp;
+    }
+    double calculateDA() {
+        return 0.97 * Basic_Pay;
+    }
+    double calculateHRA() {
+        return 0.1 * Basic_Pay;
+    }
+    double calculatePF() {
+        return 0.12 * Basic_Pay;
+    }
+    double calculateStaffClubFund() {
+        return 0.001 * Basic_Pay;
+    }
+    double calculateGrossSalary() {
+        return Basic_Pay + calculateDA() + calculateHRA();
+    }
+    double calculateNetSalary() {
+        return calculateGrossSalary() - calculatePF() - calculateStaffClubFund();
+    }
+    virtual void display(){
+        cout<<"hi"<<"\n";
+    }
+};
+
+class Programmer : public Employee, public Payroll {
+public:
+    Programmer(double sp, string a1, int b1, string c1, string d1, long long e1) : Payroll(sp) {
+        Emp_name = a1;
+        Emp_id = b1;
+        Address = c1;
+        Mail_id = d1;
+        Mobile_no = e1;
+    }
+    void display() {
+        cout << "pay slip" << "\n";
+        cout << "Employee Name: " << Emp_name << "\n";
+        cout << "Employee ID: " << Emp_id << "\n";
+        cout << "Basic pay: " << Basic_Pay << "\n";
+        cout << "DA: " << calculateDA() << "\n";
+        cout << "HRA: " << calculateHRA() << "\n";
+        cout << "PF: " << calculatePF() << "\n";
+        cout << "Staff Club Fund: " << calculateStaffClubFund() << "\n";
+        cout << "Gross Salary: " << calculateGrossSalary() << "\n";
+        cout << "Net Salary: " << calculateNetSalary() << "\n";
+    }
+};
+
+class AssistantProfessor : public Employee, public Payroll {
+public:
+    AssistantProfessor(double ep, string a2, int b2, string c2, string d2, long long e2) : Payroll(ep) {
+        Emp_name = a2;
+        Emp_id = b2;
+        Address = c2;
+        Mail_id = d2;
+        Mobile_no = e2;
+    }
+    void display() {
+        cout << "pay slip" << "\n";
+        cout << "Employee Name: " << Emp_name << "\n";
+        cout << "Employee ID: " << Emp_id << "\n";
+        cout << "Basic pay: " << Basic_Pay << "\n";
+        cout << "DA: " << calculateDA() << "\n";
+        cout << "HRA: " << calculateHRA() << "\n";
+        cout << "PF: " << calculatePF() << "\n";
+        cout << "Staff Club Fund: " << calculateStaffClubFund() << "\n";
+        cout << "Gross Salary: " << calculateGrossSalary() << "\n";
+        cout << "Net Salary: " << calculateNetSalary() << "\n";
+    }
+};
+
+class AssociateProfessor : public Employee, public Payroll {
+public:
+    AssociateProfessor(double tp, string a3, int b3, string c3, string d3, long long e3) : Payroll(tp) {
+        Emp_name = a3;
+        Emp_id = b3;
+        Address = c3;
+        Mail_id = d3;
+        Mobile_no = e3;
+    }
+    void display() {
+        cout << "pay slip" << "\n";
+        cout << "Employee Name: " << Emp_name << "\n";
+        cout << "Employee ID: " << Emp_id << "\n";
+        cout << "Basic pay: " << Basic_Pay << "\n";
+        cout << "DA: " << calculateDA() << "\n";
+        cout << "HRA: " << calculateHRA() << "\n";
+        cout << "PF: " << calculatePF() << "\n";
+        cout << "Staff Club Fund: " << calculateStaffClubFund() << "\n";
+        cout << "Gross Salary: " << calculateGrossSalary() << "\n";
+        cout << "Net Salary: " << calculateNetSalary() << "\n";
+    }
+};
+
+class Professor : public Employee, public Payroll {
+public:
+    Professor(double yp, string a4, int b4, string c4, string d4, long long e4) : Payroll(yp) {
+        Emp_name = a4;
+        Emp_id = b4;
+        Address = c4;
+        Mail_id = d4;
+        Mobile_no = e4;
+    }
+    void display() {
+        cout << "pay slip" << "\n";
+        cout << "Employee Name: " << Emp_name << "\n";
+        cout << "Employee ID: " << Emp_id << "\n";
+        cout << "Basic pay: " << Basic_Pay << "\n";
+        cout << "DA: " << calculateDA() << "\n";
+        cout << "HRA: " << calculateHRA() << "\n";
+        cout << "PF: " << calculatePF() << "\n";
+        cout << "Staff Club Fund: " << calculateStaffClubFund() << "\n";
+        cout << "Gross Salary: " << calculateGrossSalary() << "\n";
+        cout << "Net Salary: " << calculateNetSalary() << "\n";
+    }
+};
+
+int main() {
+    string a;
+    cout<<"enter who's details needed";
+    cin>>a;
+    Employee *ptr;
+    Programmer t(3000, "jayanthi", 2222, "91 northstreet", "jayanthi@777gmail.com", 1111111111);
+    ptr = &t;
+    if(a=="Programmer"){
+    ptr->display();
+    }
+    AssistantProfessor f(2849, "karthika", 3333, "81 northstreet", "karthika@666gmail.com", 2222222222);
+    ptr = &f;
+    if(a=="AssistantProfessor"){
+    ptr->display();
+    }
+    AssociateProfessor y(2000, "aruna", 4444, "71 northstreet", "aruna@888gmail.com", 3333333333);
+    ptr = &y;
+     if(a=="AssociateProfessor "){
+    ptr->display();
+     }
+    Professor m(9000, "abi", 5555, "61 northstreet", "abi@999gmail.com", 4444444444);
+    ptr = &m;
+    if(a=="Professor"){
+    ptr->display();
+    }
+    return 0;
+}
